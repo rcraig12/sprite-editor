@@ -14,6 +14,6 @@ yarn build
 
 to bundle your application
 
-Platforms supported
+Platforms supported so far...
 - Commodore 64
 - Commander X16
