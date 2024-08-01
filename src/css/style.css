@@ -127,7 +127,7 @@ li.dropdown:hover {
 }
 
 #Status {
-  background-color: #1a1a1a;
+  background: linear-gradient(180deg, #000000 0%, #202020 5%,#303030 50%, #202020 95%, #000000 100%);
   color: #00b9ee;
   padding: 6px 4px;
   vertical-align: middle;
