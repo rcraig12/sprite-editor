@@ -95,15 +95,15 @@ export default class Navigation {
   buildMenu(menuJson: MainMenuData): void {
 
     this.addMenuRoot();
-    menuJson.menus.forEach((menu: { id: string; name: string; children: any[]; }) => {
+    menuJson.menus.forEach((menu: Menu) => {
       this.addTopLevelMenu(menu.id, menu.name);
       menu.children.forEach(child => {
         if (child.type === 'child') {
-          this.addChildLevelMenu('Menu', menu.id, child.name);
+          this.addChildLevelMenu('Menu', menu.id, child.name as string);
         } else if (child.type === 'separator') {
           this.addSeparator('Menu', menu.id);
         } else if (child.type === 'title') {
-          this.addTitle('Menu', menu.id, child.name);
+          this.addTitle('Menu', menu.id, child.name as string);
         }
       });
     });

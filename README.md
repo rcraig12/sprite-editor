@@ -1,6 +1,6 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Retro Editor
 
-This project has been created using **webpack-cli**, you can now run
+Retro editor for sprites and tile maps (multi platform)
 
 ```
 npm run build
@@ -13,3 +13,7 @@ yarn build
 ```
 
 to bundle your application
+
+Platforms supported
+- Commodore 64
+- Commander X16
