@@ -2,7 +2,7 @@ export const mainMenuData: MainMenuData = {
   menus: [
     {
       id: "MainMenuSpriteEditor",
-      name: "Retro Editor",
+      name: "🚀 Retro Editor",
       children: [
         { type: "child", name: "Sprite Mode" },
         { type: "child", name: "Tile Mode" },
@@ -75,6 +75,14 @@ export const mainMenuData: MainMenuData = {
         { type: "child", name: "Toggle Sprite Borders" },
         { type: "child", name: "Zoom In" },
         { type: "child", name: "Zoom Out" }
+      ]
+    },
+    {
+      id: "MainMenuPlatform",
+      name: "Platform",
+      children: [
+        { type: "child", name: "Commodore 64" },
+        { type: "child", name: "Commander X16" }
       ]
     },
     {
