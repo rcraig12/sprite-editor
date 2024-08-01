@@ -1,15 +1,15 @@
-export interface MenuItem {
+declare interface MenuItem {
   type: 'child' | 'separator' | 'title';
   name?: string;
 }
 
-export interface Menu {
+declare interface Menu {
   id: string;
   name: string;
   children: MenuItem[];
 }
 
-export interface MainMenuData {
+declare interface MainMenuData {
   menus: Menu[];
 }
 

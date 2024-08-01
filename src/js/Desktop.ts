@@ -23,12 +23,16 @@ export default class Desktop {
     const template = `
       <div id="App">
         <div id="Menu"></div>
-        <div id="Desktop"></div>
-        <div id="Status"></div>
+        <div id="Desktop">
+          <div id="Outer">
+            <div id="GUI"></div>
+          </div>
+        </div>
+        <div id="Status">This is a test</div>
       </div>
     `;
 
-    const html = document.querySelector('body');
+    const html = document.querySelector('body') as HTMLElement;
     html.innerHTML = template;
 
   }

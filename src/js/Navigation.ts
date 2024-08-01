@@ -1,5 +1,3 @@
-import { MainMenuData } from "./Types";
-
 export default class Navigation {
 
   constructor() {}
@@ -11,7 +9,7 @@ export default class Navigation {
       </nav>
     `;
 
-    const html = document.querySelector('#Menu');
+    const html = document.querySelector('#Menu') as HTMLElement;
     html.innerHTML = template;
   }
 
@@ -22,12 +20,13 @@ export default class Navigation {
       </li>
     `;
 
-    const ulHTML = document.querySelector(`#MainMenuItems`);
+    const ulHTML = document.querySelector(`#MainMenuItems`) as HTMLElement;
     ulHTML.insertAdjacentHTML('beforeend', ul_template);
   }
 
   addChildLevelMenu(menu: string, parent: string, name: string): void {
-    const divHTML = document.querySelector(`#${parent} .dropdown-content`);
+
+    const divHTML = document.querySelector(`#${parent} .dropdown-content`) as HTMLElement;
 
     const linkTemplate = `
       <a id="menubar-${name.toLowerCase().replace(' ', '-').replace('...', '')}">${name}</a>
@@ -42,13 +41,13 @@ export default class Navigation {
     if (divHTML) {
       divHTML.insertAdjacentHTML('beforeend', linkTemplate);
     } else {
-      const liHTM = document.querySelector(`#${parent}`);
+      const liHTM = document.querySelector(`#${parent}`) as HTMLElement;
       liHTM.insertAdjacentHTML('beforeend', divLinkTemplate);
     }
   }
 
   addSeparator(menu: string, parent: string): void {
-    const divHTML = document.querySelector(`#${parent} .dropdown-content`);
+    const divHTML = document.querySelector(`#${parent} .dropdown-content`) as HTMLElement;
 
     const hrTemplate = `<hr>`;
 
@@ -61,14 +60,14 @@ export default class Navigation {
     if (divHTML) {
       divHTML.insertAdjacentHTML('beforeend', hrTemplate);
     } else {
-      const liHTM = document.querySelector(`#${parent}`);
+      const liHTM = document.querySelector(`#${parent}`) as HTMLElement;
       liHTM.insertAdjacentHTML('beforeend', divLinkTemplate);
     }
   }
 
   addTitle(menu: string, parent: string, title: string): void {
 
-    const divHTML = document.querySelector(`#${parent} .dropdown-content`);
+    const divHTML = document.querySelector(`#${parent} .dropdown-content`) as HTMLElement;
 
     const spanTemplate = `
       <span class="label">${title}</span>
@@ -86,7 +85,7 @@ export default class Navigation {
 
     } else {
 
-      const liHTM = document.querySelector(`#${parent}`);
+      const liHTM = document.querySelector(`#${parent}`) as HTMLElement;
       liHTM.insertAdjacentHTML('beforeend', divSpanTemplate);
 
     }

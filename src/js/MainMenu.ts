@@ -1,13 +1,14 @@
-import { MainMenuData } from "./Types";
-
 export const mainMenuData: MainMenuData = {
   menus: [
     {
       id: "MainMenuSpriteEditor",
-      name: "Sprite Editor",
+      name: "Retro Editor",
       children: [
+        { type: "child", name: "Sprite Mode" },
+        { type: "child", name: "Tile Mode" },
+        { type: "separator" },
+        { type: "child", name: "Settings" },
         { type: "child", name: "About" },
-        { type: "child", name: "Settings" }
       ]
     },
     {
