@@ -12,10 +12,10 @@ export default class CharsetWindow extends Window {
     super(options);
     this.charsetImage = new Image();
     this.charsetImage.src = 'img/charset/c64.png';
-    this.charsetImage.onload = () => this.drawCharset();
+    this.charsetImage.onload = () => this.paint();
   }
 
-  private drawCharset() {
+  private paint() {
     const canvas = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} #Canvas`) as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
@@ -33,7 +33,7 @@ export default class CharsetWindow extends Window {
     const numColumns = (this.charsetImage.width - this.borderSize) / (this.tileWidth + this.borderSize);
     const numRows = (this.charsetImage.height - this.borderSize) / (this.tileHeight + this.borderSize);
 
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = '#000000';
     for (let col = 0; col < numColumns; col++) {
       for (let row = 0; row < numRows; row++) {
         const x = this.borderSize + col * (this.tileWidth + this.borderSize);
