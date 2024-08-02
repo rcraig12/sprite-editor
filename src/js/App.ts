@@ -7,7 +7,7 @@ class App extends Desktop {
   constructor() {
 
     super();
-    this.render();
+    this.init();
 
   }
 
@@ -15,6 +15,6 @@ class App extends Desktop {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  new App();
+  const application = new App();
 
 });

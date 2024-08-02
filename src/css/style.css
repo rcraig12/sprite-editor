@@ -33,9 +33,10 @@ body {
 }
 
 #Menu {
-    background-color: #00a2ff;
-    color: #ffffff;
-    font-weight: 600;
+  user-select: none;
+  background-color: #00a2ff;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 #nav {
@@ -126,7 +127,43 @@ li.dropdown:hover {
   bottom: 0px;
 }
 
+.window {
+  display: flex;
+  flex-direction: column;
+  background-color: #303030;
+  font-size: 0.75em;
+  font-weight: 400;
+  color: #00b9ee;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.window .controlbar {
+  user-select: none;
+  background-color: #1a1a1a;
+  height: 16px;
+  padding-top: 4px;
+  text-align: center;
+  cursor:move;
+}
+
+.window .frame {
+  display: flex;
+  flex: 1;
+}
+
+.window .status {
+  user-select: none;
+  background: linear-gradient(180deg, #000000 0%, #202020 5%,#303030 50%, #202020 95%, #000000 100%);
+  color: #00b9ee;
+  padding: 6px 4px;
+  vertical-align: middle;
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
 #Status {
+  user-select: none;
   background: linear-gradient(180deg, #000000 0%, #202020 5%,#303030 50%, #202020 95%, #000000 100%);
   color: #00b9ee;
   padding: 6px 4px;

@@ -1,20 +1,25 @@
 import Navigation from "./Navigation"
 import { mainMenuData } from './MainMenu';
 
+import CharsetWindow from "./CharsetWindow";
+
 export default class Desktop {
 
   navigation: Navigation;
+  charsetWindow: CharsetWindow;
   
   constructor() {
 
     this.navigation = new Navigation();
+    this.charsetWindow = new CharsetWindow({ title: "Character Set", top: 100, left: 1200, width: 330, height: 330})
   
   }
 
-  render(): void {
+  init(): void {
 
     this.desktop();
     this.navigation.buildMenu(mainMenuData);
+    this.charsetWindow.showWindow();
 
   }
 
@@ -28,7 +33,7 @@ export default class Desktop {
             <div id="GUI"></div>
           </div>
         </div>
-        <div id="Status">This is a test</div>
+        <div id="Status">Welcome to Retro Editor ©2024</div>
       </div>
     `;
 

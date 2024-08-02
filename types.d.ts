@@ -13,3 +13,11 @@ declare interface MainMenuData {
   menus: Menu[];
 }
 
+declare interface WindowOptions {
+  title: string;
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+  resizable?: boolean;
+}

@@ -4,8 +4,9 @@ export const mainMenuData: MainMenuData = {
       id: "MainMenuSpriteEditor",
       name: "🚀 Retro Editor",
       children: [
-        { type: "child", name: "Sprite Mode" },
-        { type: "child", name: "Tile Mode" },
+        { type: "child", name: "Sprite Editor" },
+        { type: "child", name: "Tile Editor" },
+        { type: "child", name: "Sound Studio" },
         { type: "separator" },
         { type: "child", name: "Settings" },
         { type: "child", name: "About" },
