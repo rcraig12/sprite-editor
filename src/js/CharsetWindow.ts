@@ -5,6 +5,7 @@ export default class CharsetWindow extends Window {
   private charsetImage: HTMLImageElement;
   private tileWidth: number = 16; // assuming each tile is 16x16
   private tileHeight: number = 16;
+  private borderSize: number = 2; // 2-pixel border around each tile
   private selectedTile: { x: number, y: number } = { x: 0, y: 0 };
 
   constructor(options: WindowOptions){
@@ -20,6 +21,7 @@ export default class CharsetWindow extends Window {
 
     canvas.width = this.charsetImage.width;
     canvas.height = this.charsetImage.height;
+    
 
     if (ctx) {
       ctx.drawImage(this.charsetImage, 0, 0);
@@ -28,17 +30,20 @@ export default class CharsetWindow extends Window {
   }
 
   private drawGrid(ctx: CanvasRenderingContext2D) {
-    const numColumns = this.charsetImage.width / this.tileWidth;
-    const numRows = this.charsetImage.height / this.tileHeight;
+    const numColumns = (this.charsetImage.width - this.borderSize) / (this.tileWidth + this.borderSize);
+    const numRows = (this.charsetImage.height - this.borderSize) / (this.tileHeight + this.borderSize);
 
-    ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+    ctx.strokeStyle = '#ffffff';
     for (let col = 0; col < numColumns; col++) {
       for (let row = 0; row < numRows; row++) {
-        ctx.strokeRect(col * this.tileWidth, row * this.tileHeight, this.tileWidth, this.tileHeight);
+        const x = this.borderSize + col * (this.tileWidth + this.borderSize);
+        const y = this.borderSize + row * (this.tileHeight + this.borderSize);
+        ctx.strokeRect(x, y, this.tileWidth, this.tileHeight);
       }
     }
   }
-   private handleCanvasClick(event: MouseEvent) {
+
+  private handleCanvasClick(event: MouseEvent) {
     const canvas = event.currentTarget as HTMLCanvasElement;
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
