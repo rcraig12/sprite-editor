@@ -1,5 +1,4 @@
 import '../css/style.css';
-
 import Desktop from "./Desktop";
 
 class App extends Desktop {
@@ -16,5 +15,6 @@ class App extends Desktop {
 document.addEventListener("DOMContentLoaded", function () {
 
   const application = new App();
+  application.navigation.addEventListeners();
 
 });

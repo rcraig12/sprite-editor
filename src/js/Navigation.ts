@@ -1,16 +1,37 @@
+import Storage from "./Storage";
+
 export default class Navigation {
 
-  constructor() {}
+  storage: Storage;
+  config: ConfigType;
+
+  constructor(storage: Storage) {
+
+    this.storage = storage;
+    this.config = storage.getConfig();
+
+  }
 
   addMenuRoot(): void {
+
     const template = `
+    <div class="menuleft">
       <nav id="nav">
         <ul id="MainMenuItems"></ul>
+        
       </nav>
+    </div>
+    <div class="menuright">
+      <span class="infolabel">File:</span>
+      <span id="currentFile" class="infovalue">${this.config.global.currentFile === "" ? "unsaved" : this.config.global.currentFile}</span>
+      <span class="infolabel">Platform:</span>
+      <span id="selectedPlatform" class="infovalue">${this.config.global.selectedPlatform}</span>
+    </div>
     `;
 
     const html = document.querySelector('#Menu') as HTMLElement;
     html.innerHTML = template;
+
   }
 
   addTopLevelMenu(menu: string, name: string): void {
@@ -107,5 +128,84 @@ export default class Navigation {
         }
       });
     });
+  }
+
+  addEventListeners(): void{
+
+    /* Retro Editor */
+
+    // Set Editor to Sprite Editor Mode
+    const menubarSpriteEditor = document.querySelector('#menubar-sprite-editor') as HTMLElement;
+    menubarSpriteEditor.onclick = (e) => {
+      this.config.global.selectedEditor = "sprite";
+      this.storage.setState(this.config);
+    }
+
+    // Set Editor to Tile Editor Mode
+    const menubarTileEditor = document.querySelector('#menubar-tile-editor') as HTMLElement;
+    menubarTileEditor.onclick = (e) => {
+      this.config.global.selectedEditor = "tile";
+      this.storage.setState(this.config);
+    }
+
+    // Set Editor to Sound Editor Mode
+    const menubarSoundEditor = document.querySelector('#menubar-sound-studio') as HTMLElement;
+    menubarSoundEditor.onclick = (e) => {
+      this.config.global.selectedEditor = "sound";
+      this.storage.setState(this.config);
+    }
+
+    // Set Settings
+    const menubarSettings = document.querySelector('#menubar-settings') as HTMLElement;
+    menubarSettings.onclick = (e) => {
+      console.log('open settings dialog');
+    }
+
+    // Show About Dialog
+    const menubarAbout = document.querySelector('#menubar-about') as HTMLElement;
+    menubarAbout.onclick = (e) => {
+      console.log('open about dialog');
+    }
+
+    /* File */
+
+
+    /* Edit */
+
+
+    /* Sprite */
+
+
+    /* View */
+
+
+    /* Platform */
+
+    // Commodore 64
+    const menubarCommodoreSixtyFour = document.querySelector('#menubar-commodore-64') as HTMLElement;
+    menubarCommodoreSixtyFour.onclick = (e) => {
+
+      this.config.global.selectedPlatform = "Commodore 64";
+      this.storage.setState(this.config);
+      const selectedPlatform = document.querySelector('#selectedPlatform') as HTMLElement;
+      selectedPlatform.innerText = "Commodore 64";
+
+    }
+
+    // Commander X16
+    const menubarCommanderXSixteen = document.querySelector('#menubar-commander-x16') as HTMLElement;
+    menubarCommanderXSixteen.onclick = (e) => {
+
+      this.config.global.selectedPlatform = "Commander X16";
+      this.storage.setState(this.config);
+      const selectedPlatform = document.querySelector('#selectedPlatform') as HTMLElement;
+      selectedPlatform.innerText = "Commander X16";
+
+    }
+
+    /* Help */
+
+
+
   }
 }

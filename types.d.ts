@@ -21,3 +21,27 @@ declare interface WindowOptions {
   height: number;
   resizable?: boolean;
 }
+
+declare type Editors = {
+  sprite: object;
+  tile: object;
+  sound: object;
+};
+
+declare type PlatformSettings = {
+  name: string;
+  settings: object;
+};
+
+declare type GlobalSettings = {
+  version: string;
+  selectedPlatform: string;
+  selectedEditor: string;
+  currentFile: string;
+  editors: Editors;
+};
+
+declare type ConfigType = {
+  global: GlobalSettings;
+  platform: PlatformSettings[];
+};

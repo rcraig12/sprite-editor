@@ -1,17 +1,20 @@
+import Storage from './Storage';
 import Navigation from "./Navigation"
 import { mainMenuData } from './MainMenu';
 
 import CharsetWindow from "./CharsetWindow";
 
 export default class Desktop {
-
+  
+  storage: Storage;
   navigation: Navigation;
   charsetWindow: CharsetWindow;
   
   constructor() {
 
-    this.navigation = new Navigation();
-    this.charsetWindow = new CharsetWindow({ title: "Character Set", top: 100, left: 1200, width: 330, height: 330})
+    this.storage = new Storage();
+    this.navigation = new Navigation(this.storage);
+    this.charsetWindow = new CharsetWindow({ title: "Character Set", top: 100, left: 1200, width: 330, height: 330});
   
   }
 

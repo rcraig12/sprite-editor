@@ -33,10 +33,35 @@ body {
 }
 
 #Menu {
+  display: flex;
   user-select: none;
   background-color: #00a2ff;
   color: #ffffff;
   font-weight: 600;
+}
+
+.menuleft{
+  display: flex;
+  flex: 1;
+}
+
+.infolabel{
+  padding-right: 8px;
+  font-weight: 500;
+}
+
+.infovalue{
+  font-weight: 500;
+  padding-right: 16px;
+  color:#ffc800;
+}
+
+.menuright{
+  display: flex;
+  flex: 1;
+  padding-right: 16px;;
+  align-items: center;
+  justify-content: end;
 }
 
 #nav {
@@ -142,7 +167,7 @@ li.dropdown:hover {
 
 .window .controlbar {
   user-select: none;
-  background-color: #1a1a1a;
+  background-color: #0677f0;
   height: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
