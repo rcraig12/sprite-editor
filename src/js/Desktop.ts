@@ -1,47 +1,44 @@
-import Storage from './Storage';
-import Navigation from "./Navigation"
-import { mainMenuData } from './MainMenu';
-
-import CharsetWindow from "./CharsetWindow";
-
 export default class Desktop {
-  
-  storage: Storage;
-  navigation: Navigation;
-  charsetWindow: CharsetWindow;
-  
-  constructor() {
 
-    this.storage = new Storage();
-    this.navigation = new Navigation(this.storage);
-    this.charsetWindow = new CharsetWindow({ title: "Character Set", top: 100, left: 1200, width: 330, height: 330});
+  app: any;
+  status: string;
+  
+  constructor(app: any) {
+
+    this.app = app;
+    this.status = "Welcome to Retro Editor ©2024";
   
   }
 
-  init(): void {
-
-    this.desktop();
-    this.navigation.buildMenu(mainMenuData);
-    this.charsetWindow.showWindow();
-
-  }
-
-  desktop(): void {
+  render(): void {
 
     const template = `
       <div id="App">
         <div id="Menu"></div>
         <div id="Desktop">
           <div id="Outer">
-            <div id="GUI"></div>
+            <div id="DesktopCanvas"></div>
           </div>
         </div>
-        <div id="Status">Welcome to Retro Editor ©2024</div>
+        ${this.status !== '' ? `<div class="status">${this.status}</div>`:``}
       </div>
     `;
 
     const html = document.querySelector('body') as HTMLElement;
     html.innerHTML = template;
+
+  }
+
+  updateStatus(value: string): void {
+
+    const windowElement = document.querySelector(`#Status`) as HTMLElement;
+
+    if (windowElement){
+
+      this.status = value;
+      windowElement.innerText = value;
+
+    }
 
   }
 

@@ -2,7 +2,7 @@ export const mainMenuData: MainMenuData = {
   menus: [
     {
       id: "MainMenuSpriteEditor",
-      name: "🚀 Retro Editor",
+      name: "Retro Editor",
       children: [
         { type: "child", name: "Sprite Editor" },
         { type: "child", name: "Tile Editor" },

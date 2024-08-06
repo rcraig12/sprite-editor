@@ -12,11 +12,22 @@ export default class CharsetWindow extends Window {
     super(options);
     this.charsetImage = new Image();
     this.charsetImage.src = 'img/charset/c64.png';
-    this.charsetImage.onload = () => this.paint();
+    this.charsetImage.onload = () => this.render();
   }
 
-  private paint() {
-    const canvas = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} #Canvas`) as HTMLCanvasElement;
+  public render() {
+    super.render();
+
+    const template = `
+      <div>
+        <div><canvas id="CharsetCanvas"></canvas></div>
+      </div>
+    `;
+
+    const html = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .frame .panel`) as HTMLElement;
+    html.innerHTML = template;
+
+    const canvas = document.querySelector(`#CharsetCanvas`) as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
     canvas.width = this.charsetImage.width;

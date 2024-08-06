@@ -8,6 +8,7 @@ export default class Window {
   private offsetX: number = 0;
   private offsetY: number = 0;
   private isDragging: boolean = false;
+  public status: string;
 
   constructor({ title, top, left, width, height, resizable = true }: WindowOptions) {
     this.title = title;
@@ -16,31 +17,33 @@ export default class Window {
     this.width = width;
     this.height = height;
     this.resizable = resizable;
+    this.status = "";
+
   }
 
-  showWindow() {
+  render() {
+
     const template = `
       <div id="Window-${this.title.toLowerCase().replace(' ', '-')}" class="window" style="position:absolute;top:${this.top}px;left:${this.left}px;width:${this.width}px;height:${this.height}px;z-index:100">
-        <div class="controlbar">${this.title}</div>
+        <div class="controlbar">${this.title.toUpperCase()}</div>
         <div class="frame">
-          <div id="WindowCanvas">
-            <div id="Panel">
-              <canvas id="Canvas"></canvas>
-              <canvas id="SelectedTile" width="32" height="32"></canvas>
+            <div class="panel">
+
             </div>
-          </div>
         </div>
-        <div class="status">Window Status</div>
+        ${this.status !== '' ? `<div class="status">${this.status}</div>`:``}
       </div>
     `;
 
-    const html = document.querySelector('#GUI') as HTMLElement;
-    html.innerHTML = template;
+    const html = document.querySelector('#DesktopCanvas') as HTMLElement;
+    const windowTemplate = this.stringToElement(template);
+    html.insertAdjacentElement('beforeend', windowTemplate);
 
     this.addEventListeners();
   }
 
-  private addEventListeners() {
+  protected addEventListeners() {
+
     const windowElement = document.getElementById(`Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
     const controlbar = windowElement.querySelector('.controlbar') as HTMLElement;
 
@@ -60,7 +63,7 @@ export default class Window {
 
   private onMouseMove(e: MouseEvent) {
     if (this.isDragging) {
-      const parentElement = document.getElementById('GUI') as HTMLElement;
+      const parentElement = document.querySelector('#Desktop') as HTMLElement;
       const parentRect = parentElement.getBoundingClientRect();
       const windowElement = document.getElementById(`Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
       const windowRect = windowElement.getBoundingClientRect();
@@ -95,8 +98,43 @@ export default class Window {
   }
 
   private onWindowClick(windowElement: HTMLElement) {
-    let zIndex = parseInt(windowElement.style.zIndex) || 0;
-    zIndex++;
-    windowElement.style.zIndex = zIndex.toString();
+    const allWindows = Array.from(document.querySelectorAll('#DesktopCanvas .window'));
+    const zIndexes = allWindows.map((win) => ({
+      element: win as HTMLElement,
+      zIndex: parseInt((win as HTMLElement).style.zIndex) || 0,
+    }));
+
+    zIndexes.sort((a, b) => a.zIndex - b.zIndex);
+
+    let startIndex = 100;
+    zIndexes.forEach((win, index) => {
+      win.element.style.zIndex = (startIndex + index).toString();
+    });
+
+    windowElement.style.zIndex = (startIndex + zIndexes.length).toString();
   }
+
+  updateStatus(value: string): void {
+
+    const windowElement = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .status`) as HTMLElement;
+
+    if (windowElement){
+
+      this.status = value;
+      windowElement.innerText = value;
+
+    }
+
+  }
+
+  // Utility function to convert a string to an Element
+  stringToElement(htmlString: string): Element {
+    const template = document.createElement('template');
+    template.innerHTML = htmlString.trim();
+    return template.content.firstElementChild as Element;
+  }
+
 }
+
+
+
