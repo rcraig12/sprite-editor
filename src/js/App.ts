@@ -58,8 +58,8 @@ class App {
     this.navigation.render(mainMenuData);
 
     if (this.config.global.selectedEditor === "sprite"){
-      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this)
-      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 100, height: 400})
+      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this);
+      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 80, height: 400}, this);
       const spriteEditor = new SpriteEditorWindow({ title: "Editor", top: 10, left: 230, width: 360, height: 380});
       const spritePreview = new SpritePreviewWindow({ title: "Preview", top: 444, left: 10, width: 200, height: 200});
       const spriteList = new SpriteListWindow({ title: "Sprite List", top: 10, left: 640, width: 600, height: 300});
@@ -83,8 +83,8 @@ class App {
 
     if (this.config.global.selectedEditor === "tile"){
 
-      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this)
-      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 100, height: 400})
+      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this);
+      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 80, height: 400}, this);
       const charsetWindow = new CharsetWindow({ title: "Character Set", top: 10, left: 1210, width: 290, height: 330});
       const tileWindow = new TileWindow({ title: "Tile", top: 350, left: 1210, width: 330, height: 330});
       const tileMapWindow = new TileMapWindow({ title: "Tile Map", top: 10, left: 230, width: 968, height: 632});
@@ -157,6 +157,7 @@ class App {
       this.storage.setState(this.config);
       const selectedPlatform = document.querySelector('#selectedPlatform') as HTMLElement;
       selectedPlatform.innerText = "Commodore 64";
+      this.render();
     }
 
     if ( menuItem === "menubar-commander-x16"){
@@ -164,6 +165,7 @@ class App {
       this.storage.setState(this.config);
       const selectedPlatform = document.querySelector('#selectedPlatform') as HTMLElement;
       selectedPlatform.innerText = "Commander X16";
+      this.render();
     }
 
     // Help Menu
@@ -175,6 +177,12 @@ class App {
   handleTool(toolItem: string): void {
 
     console.log(toolItem);
+
+  }
+
+  handlePalette(colour: string): void {
+
+    console.log(colour);
 
   }
 

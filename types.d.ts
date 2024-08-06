@@ -28,9 +28,16 @@ declare type Editors = {
   sound: object;
 };
 
+declare type Palette = string[];
+
+declare type Palettes = {
+  [key: string]: Palette;
+};
+
 declare type PlatformSettings = {
   name: string;
   settings: object;
+  palettes?: Palettes;
 };
 
 declare type GlobalSettings = {
