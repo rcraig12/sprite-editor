@@ -20,7 +20,7 @@ export default class Desktop {
             <div id="DesktopCanvas"></div>
           </div>
         </div>
-        ${this.status !== '' ? `<div class="status">${this.status}</div>`:``}
+        ${this.status !== '' ? `<div id="Status">${this.status}</div>`:``}
       </div>
     `;
 
