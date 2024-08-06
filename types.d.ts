@@ -45,3 +45,12 @@ declare type ConfigType = {
   global: GlobalSettings;
   platform: PlatformSettings[];
 };
+
+declare type canvasOptions = {
+  id: string;
+  cols: number;
+  rows: number;
+  zoom: number;
+  grid: boolean;
+  edit: boolean;
+}
