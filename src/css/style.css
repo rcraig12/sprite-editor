@@ -248,6 +248,19 @@ li.dropdown:hover {
   color:#ffc800;
 }
 
+#palette {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#palette .palettecolour {
+  display: inline-flex;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+}
+
 .graphicscanvas {
   height: 100%;
   width: 100%;
