@@ -45,6 +45,7 @@ declare type GlobalSettings = {
   selectedPlatform: string;
   selectedEditor: string;
   currentFile: string;
+  selectedTool: string;
   editors: Editors;
 };
 
