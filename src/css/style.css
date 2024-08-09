@@ -231,6 +231,10 @@ li.dropdown:hover {
   height: 40px;
 }
 
+.tools .toolMenuItem.selected {
+  background-color: #ffc80017;
+}
+
 .tools .toolMenuItem:hover {
   background-color: #ffffff30;
 }

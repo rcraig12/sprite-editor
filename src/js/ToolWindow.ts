@@ -39,7 +39,7 @@ export default class ToolWindow extends Window {
     this.toolbarMenu.forEach(tool => {
 
       const toolTemplate = `
-        <div data-tool="tool-${tool.title.toLowerCase()}" class="toolMenuItem">
+        <div data-tool="tool-${tool.title.toLowerCase()}" class="toolMenuItem ${this.app.config.global.selectedTool == tool.title.toLowerCase() ? `selected` : ``}">
           <div class="toolIcon"><a><img src="${tool.icon}" /></a></div>
           <div class="toolTitle">${tool.title}</div>
         </div>

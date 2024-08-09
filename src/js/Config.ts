@@ -3,9 +3,12 @@ export const defaultConfig: ConfigType = {
     version: "1.0.0 alpha",
     selectedPlatform: "Commodore 64",
     selectedEditor: "tile",
+    selectedTool: "draw",
     currentFile: "",
     editors: {
-      sprite: {},
+      sprite: {
+
+      },
       tile: {},
       sound: {}
     }

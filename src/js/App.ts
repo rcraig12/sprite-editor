@@ -176,7 +176,9 @@ class App {
 
   handleTool(toolItem: string): void {
 
-    console.log(toolItem);
+    this.config.global.selectedTool = toolItem.replace('tool-','');
+    this.storage.setState(this.config);
+    this.render();
 
   }
 
