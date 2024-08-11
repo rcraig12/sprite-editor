@@ -62,6 +62,7 @@ export const mainMenuData: MainMenuData = {
       name: "View",
       children: [
         { type: "child", name: "Toggle Fullscreen" },
+        { type: "child", name: "Reset UI" },
         { type: "separator" },
         { type: "title", name: "Editor Window" },
         { type: "child", name: "Toggle Grid" },

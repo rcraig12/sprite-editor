@@ -58,12 +58,20 @@ class App {
     this.navigation.render(mainMenuData);
 
     if (this.config.global.selectedEditor === "sprite"){
-      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this);
-      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 80, height: 400}, this);
-      const spriteEditor = new SpriteEditorWindow({ title: "Editor", top: 10, left: 230, width: 360, height: 380});
-      const spritePreview = new SpritePreviewWindow({ title: "Preview", top: 444, left: 10, width: 200, height: 200});
-      const spriteList = new SpriteListWindow({ title: "Sprite List", top: 10, left: 640, width: 600, height: 300});
-      const spriteAnimation = new SpriteAnimationWindow({ title: "Sprite Animation", top: 320, left: 640, width: 600, height: 300});
+
+      const toolWindowCoords = this.storage.getWindowCoordinates("toolWindow");
+      const paletteWindowCoords = this.storage.getWindowCoordinates("paletteWindow");
+      const spriteEditorWindowCoords = this.storage.getWindowCoordinates("spriteEditorWindow");
+      const spritePreviewWindowCoords = this.storage.getWindowCoordinates("spritePreviewWindow");
+      const spriteListWindowCoords = this.storage.getWindowCoordinates("spriteListWindow");
+      const spriteAnimationWindowCoords = this.storage.getWindowCoordinates("spriteAnimationWindow");
+
+      const toolWindow = new ToolWindow({ title: "Tools", ...toolWindowCoords, width: 60, height: 394}, this);
+      const paletteWindow = new PaletteWindow({ title: "Palette", ...paletteWindowCoords, width: 80, height: 400}, this);
+      const spriteEditor = new SpriteEditorWindow({ title: "Editor", ...spriteEditorWindowCoords, width: 360, height: 380});
+      const spritePreview = new SpritePreviewWindow({ title: "Preview", ...spritePreviewWindowCoords, width: 200, height: 200});
+      const spriteList = new SpriteListWindow({ title: "Sprite List", ...spriteListWindowCoords, width: 600, height: 300});
+      const spriteAnimation = new SpriteAnimationWindow({ title: "Sprite Animation", ...spriteAnimationWindowCoords, width: 600, height: 300});
 
       this.addWindow(toolWindow);
       toolWindow.render();
@@ -83,11 +91,17 @@ class App {
 
     if (this.config.global.selectedEditor === "tile"){
 
-      const toolWindow = new ToolWindow({ title: "Tools", top: 10, left: 10, width: 60, height: 394}, this);
-      const paletteWindow = new PaletteWindow({ title: "Palette", top: 10, left: 120, width: 80, height: 400}, this);
-      const charsetWindow = new CharsetWindow({ title: "Character Set", top: 10, left: 1210, width: 290, height: 330});
-      const tileWindow = new TileWindow({ title: "Tile", top: 350, left: 1210, width: 330, height: 330});
-      const tileMapWindow = new TileMapWindow({ title: "Tile Map", top: 10, left: 230, width: 968, height: 632});
+      const toolWindowCoords = this.storage.getWindowCoordinates("toolWindow");
+      const paletteWindowCoords = this.storage.getWindowCoordinates("paletteWindow");
+      const charsetWindowCoords = this.storage.getWindowCoordinates("charsetWindow");
+      const tileWindowCoords = this.storage.getWindowCoordinates("tileWindow");
+      const tileMapWindowCoords = this.storage.getWindowCoordinates("tileMapWindow");
+
+      const toolWindow = new ToolWindow({ title: "Tools", ...toolWindowCoords, width: 60, height: 394}, this);
+      const paletteWindow = new PaletteWindow({ title: "Palette", ...paletteWindowCoords, width: 80, height: 400}, this);
+      const charsetWindow = new CharsetWindow({ title: "Character Set", ...charsetWindowCoords, width: 290, height: 330});
+      const tileWindow = new TileWindow({ title: "Tile", ...tileWindowCoords, width: 330, height: 330});
+      const tileMapWindow = new TileMapWindow({ title: "Tile Map", ...tileMapWindowCoords, width: 968, height: 632});
 
       this.addWindow(toolWindow);
       toolWindow.render();
@@ -118,6 +132,7 @@ class App {
     // Retro Editor Menu
 
     if ( menuItem === "menubar-sprite-editor"){
+      this.config = this.storage.getState();
       this.config.global.selectedEditor = "sprite";
       this.storage.setState(this.config);
       this.windows = [];
@@ -125,6 +140,7 @@ class App {
     }    
 
     if ( menuItem === "menubar-tile-editor"){
+      this.config = this.storage.getState();
       this.config.global.selectedEditor = "tile";
       this.storage.setState(this.config);
       this.windows = [];
@@ -149,6 +165,15 @@ class App {
 
     // View Menu
 
+    if ( menuItem === "menubar-reset-ui"){
+      const editor = this.config.global.selectedEditor;
+      this.storage.resetState();
+      this.config = this.storage.getConfig();
+      this.config.global.selectedEditor = editor;
+      this.storage.setState(this.config);
+      this.windows = [];
+      this.render();
+    }
 
     // Platform Menu
 

@@ -1,3 +1,5 @@
+import Storage from './Storage';
+
 export default class Window {
   title: string;
   top: number;
@@ -9,8 +11,10 @@ export default class Window {
   private offsetY: number = 0;
   private isDragging: boolean = false;
   public status: string;
+  private storage: Storage;
 
   constructor({ title, top, left, width, height, resizable = true }: WindowOptions) {
+    this.storage = new Storage();
     this.title = title;
     this.top = top;
     this.left = left;
@@ -18,6 +22,7 @@ export default class Window {
     this.height = height;
     this.resizable = resizable;
     this.status = "";
+    
 
   }
 
@@ -95,6 +100,11 @@ export default class Window {
   private onMouseUp() {
     this.isDragging = false;
     document.body.style.userSelect = '';  // Re-enable text selection
+
+    // Save the new window coordinates
+  
+    this.storage.setWindowCoordinates(this);
+    
   }
 
   private onWindowClick(windowElement: HTMLElement) {

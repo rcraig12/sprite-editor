@@ -2,14 +2,25 @@ export const defaultConfig: ConfigType = {
   global: {
     version: "1.0.0 alpha",
     selectedPlatform: "Commodore 64",
-    selectedEditor: "tile",
+    selectedEditor: "sprite",
     selectedTool: "draw",
     currentFile: "",
     editors: {
       sprite: {
-
+        toolWindow: { top: 10, left: 10 },
+        paletteWindow: { top: 10, left: 90 },
+        spriteEditorWindow: { top: 10, left: 230 },
+        spritePreviewWindow: { top: 444, left: 10 },
+        spriteListWindow: { top: 10, left: 640 },
+        spriteAnimationWindow: { top: 320, left: 640 }
       },
-      tile: {},
+      tile: {
+        toolWindow: { top: 10, left: 10 },
+        paletteWindow: { top: 10, left: 90 },
+        charsetWindow: { top: 10, left: 1170 },
+        tileWindow: { top: 360, left: 1170 },
+        tileMapWindow: { top: 10, left: 180 }
+      },
       sound: {}
     }
   },
