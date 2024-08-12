@@ -17,6 +17,9 @@ export default class SpriteAnimationWindow extends Window {
         <div></div>
       </div>
     `;
+    
+    const window = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
+    window.setAttribute('data-storage-attribute', 'spriteAnimationWindow');
 
     const html = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .frame .panel`) as HTMLElement;
     html.innerHTML = template;

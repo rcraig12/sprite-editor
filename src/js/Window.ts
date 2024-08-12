@@ -12,8 +12,9 @@ export default class Window {
   private isDragging: boolean = false;
   public status: string;
   private storage: Storage;
+  private zIndex: number;
 
-  constructor({ title, top, left, width, height, resizable = true }: WindowOptions) {
+  constructor({ title, top, left, zindex, width, height, resizable = true }: WindowOptions) {
     this.storage = new Storage();
     this.title = title;
     this.top = top;
@@ -22,14 +23,14 @@ export default class Window {
     this.height = height;
     this.resizable = resizable;
     this.status = "";
-    
+    this.zIndex = zindex;
 
   }
 
   render() {
 
     const template = `
-      <div id="Window-${this.title.toLowerCase().replace(' ', '-')}" class="window" style="position:absolute;top:${this.top}px;left:${this.left}px;width:${this.width}px;height:${this.height}px;z-index:100">
+      <div id="Window-${this.title.toLowerCase().replace(' ', '-')}" class="window" style="position:absolute;top:${this.top}px;left:${this.left}px;width:${this.width}px;height:${this.height}px;z-index:${this.zIndex};">
         <div class="controlbar">${this.title.toUpperCase()}</div>
         <div class="frame">
             <div class="panel">
@@ -103,8 +104,9 @@ export default class Window {
 
     // Save the new window coordinates
   
+    console.log(this);
     this.storage.setWindowCoordinates(this);
-    
+
   }
 
   private onWindowClick(windowElement: HTMLElement) {
@@ -121,7 +123,13 @@ export default class Window {
       win.element.style.zIndex = (startIndex + index).toString();
     });
 
+    
     windowElement.style.zIndex = (startIndex + zIndexes.length).toString();
+
+    //console.log(this);
+    //this.storage.setWindowCoordinates(this);
+
+
   }
 
   updateStatus(value: string): void {

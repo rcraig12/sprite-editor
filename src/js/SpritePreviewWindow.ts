@@ -18,6 +18,9 @@ export default class SpritePreviewWindow extends Window {
       </div>
     `;
 
+    const window = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
+    window.setAttribute('data-storage-attribute', 'spritePreviewWindow');
+
     const html = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .frame .panel`) as HTMLElement;
     html.innerHTML = template;
 

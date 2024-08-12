@@ -38,7 +38,10 @@ export default class PaletteWindow extends Window {
 
     // Append the palette divs to the template
     const template = `<div id="palette"></div>`;
+    const window = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
+    window.setAttribute('data-storage-attribute', 'paletteWindow');
     const html = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .frame .panel`) as HTMLElement;
+
     html.innerHTML = template;
     
     const paletteContainer = html.querySelector('#palette') as HTMLElement;

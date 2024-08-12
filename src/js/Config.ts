@@ -7,19 +7,19 @@ export const defaultConfig: ConfigType = {
     currentFile: "",
     editors: {
       sprite: {
-        toolWindow: { top: 10, left: 10 },
-        paletteWindow: { top: 10, left: 90 },
-        spriteEditorWindow: { top: 10, left: 230 },
-        spritePreviewWindow: { top: 444, left: 10 },
-        spriteListWindow: { top: 10, left: 640 },
-        spriteAnimationWindow: { top: 320, left: 640 }
+        toolWindow: { top: 10, left: 10, zindex: 100 },
+        paletteWindow: { top: 10, left: 90, zindex: 100 },
+        spriteEditorWindow: { top: 10, left: 230, zindex: 100 },
+        spritePreviewWindow: { top: 444, left: 10, zindex: 100 },
+        spriteListWindow: { top: 10, left: 640, zindex: 100 },
+        spriteAnimationWindow: { top: 320, left: 640, zindex: 100 }
       },
       tile: {
-        toolWindow: { top: 10, left: 10 },
-        paletteWindow: { top: 10, left: 90 },
-        charsetWindow: { top: 10, left: 1170 },
-        tileWindow: { top: 360, left: 1170 },
-        tileMapWindow: { top: 10, left: 180 }
+        toolWindow: { top: 10, left: 10, zindex: 100 },
+        paletteWindow: { top: 10, left: 90, zindex: 100 },
+        charsetWindow: { top: 10, left: 1170, zindex: 100 },
+        tileWindow: { top: 360, left: 1170, zindex: 100 },
+        tileMapWindow: { top: 10, left: 180, zindex: 100 }
       },
       sound: {}
     }

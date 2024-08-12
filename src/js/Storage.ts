@@ -74,25 +74,25 @@ class Storage {
     return this.getState();
   }
 
-  getWindowCoordinates(windowName: string): { top: number; left: number } {
+  getWindowCoordinates(windowName: string): { top: number; left: number; zindex: number } {
     const state = this.getState();
 
     if (state.global.selectedEditor === "sprite"){
-      const coordConfig = state.global.editors.sprite as Record<string, { top: number; left: number }>;
-      return coordConfig[windowName] || { top: 10, left: 10 };
+      const coordConfig = state.global.editors.sprite as Record<string, { top: number; left: number; zindex: number }>;
+      return coordConfig[windowName] || { top: 10, left: 10, zindex: 100  };
     }
 
     if (state.global.selectedEditor === "tile"){
-      const coordConfig = state.global.editors.tile as Record<string, { top: number; left: number }>;
-      return coordConfig[windowName] || { top: 10, left: 10 };
+      const coordConfig = state.global.editors.tile as Record<string, { top: number; left: number; zindex: number }>;
+      return coordConfig[windowName] || { top: 10, left: 10, zindex: 100 };
     }
 
     // It should never get here but if it does supply values
-    return { top: 10, left: 10};
+    return { top: 10, left: 10, zindex: 100};
     
   }
 
-   setWindowCoordinates(window: any) {
+  setWindowCoordinates(window: any) {
 
     const state = this.getState();
   
@@ -115,7 +115,7 @@ class Storage {
         // Update the coordinates
         coordConfig[prop] = {
           top: window.top,
-          left: window.left,
+          left: window.left
         };
 
       }
@@ -143,12 +143,44 @@ class Storage {
 
       }
     }
+
+    const allWindows = Array.from(document.querySelectorAll('#DesktopCanvas .window'));
+
+    allWindows.forEach((win) => {
+        const element = win as HTMLElement;
+        const zIndex = parseInt(element.style.zIndex) || 0;
+        const storageAttribute = element.getAttribute('data-storage-attribute');
+
+        if (!storageAttribute) {
+            console.warn('Missing data-storage-attribute on window:', element);
+            return;
+        }
+
+        // Update the sprite editor's coordinates if selected
+        if (state.global.selectedEditor === "sprite") {
+            const coordConfig = state.global.editors.sprite as Record<string, { top: number; left: number; zindex: number }>;
+            coordConfig[storageAttribute] = {
+                top: parseInt(element.style.top) || 0,
+                left: parseInt(element.style.left) || 0,
+                zindex: zIndex
+            };
+        }
+
+        // Update the tile editor's coordinates if selected
+        else if (state.global.selectedEditor === "tile") {
+            const coordConfig = state.global.editors.tile as Record<string, { top: number; left: number; zindex: number }>;
+            coordConfig[storageAttribute] = {
+                top: parseInt(element.style.top) || 0,
+                left: parseInt(element.style.left) || 0,
+                zindex: zIndex
+            };
+        }
+    });
   
     this.setState(state);
 
    }
-  
-  
+ 
 }
 
 export default Storage;

@@ -31,6 +31,8 @@ export default class ToolWindow extends Window {
       <div class="tools"></div>
     `;
 
+    const window = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
+    window.setAttribute('data-storage-attribute', 'toolWindow');
     const html = document.querySelector(`#Window-${this.title.toLowerCase().replace(' ', '-')} .frame .panel`) as HTMLElement;
     html.innerHTML = template;
 

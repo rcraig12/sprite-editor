@@ -17,8 +17,10 @@ declare interface WindowOptions {
   title: string;
   top: number;
   left: number;
+  zindex: number;
   width: number;
   height: number;
+  
   resizable?: boolean;
 }
 
