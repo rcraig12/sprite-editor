@@ -172,6 +172,7 @@ li.dropdown:hover {
   user-select: none;
   background-color: #0677f0;
   height: 16px;
+  min-height: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
   text-align: center;
