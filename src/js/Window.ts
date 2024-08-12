@@ -14,6 +14,7 @@ export default class Window {
   private storage: Storage;
   private zIndex: number;
 
+  
   constructor({ title, top, left, zindex, width, height, resizable = true }: WindowOptions) {
     this.storage = new Storage();
     this.title = title;
@@ -26,6 +27,7 @@ export default class Window {
     this.zIndex = zindex;
 
   }
+
 
   render() {
 
@@ -46,6 +48,7 @@ export default class Window {
     html.insertAdjacentElement('beforeend', windowTemplate);
 
     this.addEventListeners();
+
   }
 
   protected addEventListeners() {
@@ -58,17 +61,24 @@ export default class Window {
 
     document.addEventListener('mousemove', (e) => this.onMouseMove(e));
     document.addEventListener('mouseup', () => this.onMouseUp());
+
   }
 
+
   private onMouseDown(e: MouseEvent) {
+
     this.isDragging = true;
     this.offsetX = e.clientX - this.left;
     this.offsetY = e.clientY - this.top;
     document.body.style.userSelect = 'none';  // Prevent text selection while dragging
+
   }
 
+
   private onMouseMove(e: MouseEvent) {
+
     if (this.isDragging) {
+
       const parentElement = document.querySelector('#Desktop') as HTMLElement;
       const parentRect = parentElement.getBoundingClientRect();
       const windowElement = document.getElementById(`Window-${this.title.toLowerCase().replace(' ', '-')}`) as HTMLElement;
@@ -79,15 +89,23 @@ export default class Window {
 
       // Ensure the window stays within the parent's boundaries
       if (newLeft < 0) {
+
         newLeft = 0;
+
       } else if (newLeft + windowRect.width > parentRect.width) {
+
         newLeft = parentRect.width - windowRect.width;
+
       }
 
       if (newTop < 0) {
+
         newTop = 0;
+
       } else if (newTop + windowRect.height > parentRect.height) {
+
         newTop = parentRect.height - windowRect.height;
+
       }
 
       this.left = newLeft;
@@ -95,10 +113,14 @@ export default class Window {
 
       windowElement.style.left = `${this.left}px`;
       windowElement.style.top = `${this.top}px`;
+
     }
+
   }
 
+
   private onMouseUp() {
+
     this.isDragging = false;
     document.body.style.userSelect = '';  // Re-enable text selection
 
@@ -109,28 +131,35 @@ export default class Window {
 
   }
 
+
   private onWindowClick(windowElement: HTMLElement) {
+
     const allWindows = Array.from(document.querySelectorAll('#DesktopCanvas .window'));
+
     const zIndexes = allWindows.map((win) => ({
+
       element: win as HTMLElement,
       zIndex: parseInt((win as HTMLElement).style.zIndex) || 0,
+
     }));
 
     zIndexes.sort((a, b) => a.zIndex - b.zIndex);
 
     let startIndex = 100;
+
     zIndexes.forEach((win, index) => {
+
       win.element.style.zIndex = (startIndex + index).toString();
+
     });
 
     
     windowElement.style.zIndex = (startIndex + zIndexes.length).toString();
 
-    //console.log(this);
-    //this.storage.setWindowCoordinates(this);
-
+    this.storage.setWindowCoordinates(this);
 
   }
+
 
   updateStatus(value: string): void {
 
@@ -145,11 +174,15 @@ export default class Window {
 
   }
 
+
   // Utility function to convert a string to an Element
   stringToElement(htmlString: string): Element {
+
     const template = document.createElement('template');
     template.innerHTML = htmlString.trim();
+
     return template.content.firstElementChild as Element;
+
   }
 
 }
