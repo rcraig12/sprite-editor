@@ -1,13 +1,19 @@
+import Storage from "./Storage";
+
 export default class GraphicsCanvas {
 
   window: any;
   options: canvasOptions;
   ctx: CanvasRenderingContext2D | null;
+  private storage: Storage;
+  private config: ConfigType;
 
   constructor(options: canvasOptions, window: any) {
+    this.storage = new Storage();
     this.window = window;
     this.options = options;
     this.ctx = null;
+    this.config = this.storage.getState();
   }
 
   public render() {

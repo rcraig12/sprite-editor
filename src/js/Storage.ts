@@ -31,6 +31,19 @@ class Storage {
     return updatedPlatforms;
   }
 
+  // Merge User Data
+  private mergeUserData(currentUserData: UserData = { sprites: [], tiles: [], maps: [], animations: [] }): UserData {
+    const defaultUserData = defaultConfig.userdata;
+  
+    return {
+      sprites: currentUserData.sprites.length > 0 ? currentUserData.sprites : defaultUserData.sprites,
+      tiles: currentUserData.tiles.length > 0 ? currentUserData.tiles : defaultUserData.tiles,
+      maps: currentUserData.maps.length > 0 ? currentUserData.maps : defaultUserData.maps,
+      animations: currentUserData.animations.length > 0 ? currentUserData.animations : defaultUserData.animations,
+    };
+  }
+  
+
   // Get the state from local storage
   getState(): ConfigType {
     const state = localStorage.getItem(this.storageKey);
@@ -59,7 +72,8 @@ class Storage {
   private getUpdatedState(currentState: ConfigType): ConfigType {
     return {
       global: { ...defaultConfig.global, ...currentState.global },
-      platform: this.mergePlatforms(currentState.platform)
+      platform: this.mergePlatforms(currentState.platform),
+      userdata: this.mergeUserData(currentState.userdata),
     };
   }
 

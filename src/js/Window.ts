@@ -125,8 +125,6 @@ export default class Window {
     document.body.style.userSelect = '';  // Re-enable text selection
 
     // Save the new window coordinates
-  
-    console.log(this);
     this.storage.setWindowCoordinates(this);
 
   }

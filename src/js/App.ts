@@ -120,9 +120,8 @@ class App {
 
     }
 
-
-
     console.log(this);
+
   }
 
   handleNavigation(menuItem: any): void {
@@ -209,6 +208,8 @@ class App {
 
   handlePalette(colour: string): void {
 
+    this.config.global.selectedColour = colour;
+    this.storage.setState(this.config);
     console.log(colour);
 
   }

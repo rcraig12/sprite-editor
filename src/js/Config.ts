@@ -4,6 +4,11 @@ export const defaultConfig: ConfigType = {
     selectedPlatform: "Commodore 64",
     selectedEditor: "sprite",
     selectedTool: "draw",
+    selectedColour: "",
+    selectedSprite: "sprite-1",
+    selectedAnimation: "animation-1",
+    selectedMap: "map-1",
+    selectedTile: "tile-1",
     currentFile: "",
     editors: {
       sprite: {
@@ -45,7 +50,7 @@ export const defaultConfig: ConfigType = {
         ],
       },
       settings: {
-        selectedPalette: "pepto"
+        selectedPalette: "colodore"
       }
     },
     {
@@ -66,5 +71,11 @@ export const defaultConfig: ConfigType = {
         selectedPalette: "cx16"
       }
     }
-  ]
+  ],
+  userdata: {
+    sprites: [],       // Array of SpriteData
+    tiles: [],         // Array of TileData
+    maps: [],          // Array of MapData
+    animations: []     // Array of AnimationData
+  }
 };
